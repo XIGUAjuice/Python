@@ -14,5 +14,7 @@ urlpatterns = [
     # 创建新主题
     url(r'^new_topic/$', views.new_topic, name='new_topic'),
     # 创建新条目
-    url(r'^new_content/(?P<topic_id>\d+)/$', views.new_content, name='new_content')
+    url(r'^new_content/(?P<topic_id>\d+)/$', views.new_content, name='new_content'),
+    # 修改条目
+    url(r'^edit_content/(?P<content_id>\d+)/$', views.edit_content, name='edit_content')
 ]

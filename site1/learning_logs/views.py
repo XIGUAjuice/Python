@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 
 from .models import Topic
+from .models import Content
 from .forms import TopicForm
 from .forms import ContentForm
 
@@ -13,6 +15,7 @@ def index(request):
     return render(request, 'learning_logs/index.html')
 
 
+@login_required
 def topics(request):
     """ 显示所有主题 """
     topics = Topic.objects.order_by('date_add')
@@ -62,3 +65,20 @@ def new_content(request, topic_id):
 
     content = {'topic': topic, 'form': form}
     return render(request, 'learning_logs/new_content.html', content)
+
+
+def edit_content(request, content_id):
+    """ 编辑既有条目 """
+    entry = Content.objects.get(id=content_id)
+    topic = entry.topic
+    if request.method != 'POST':
+        """ 除此请求，创建表单 """
+        form = ContentForm(instance=entry)
+    else:
+        form = ContentForm(instance=entry, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('learning_logs:topic', args=[topic.id]))
+
+    context = {'entry': entry, 'topic': topic, 'form': form}
+    return render(request, 'learning_logs/edit_content.html', context)
