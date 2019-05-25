@@ -122,4 +122,4 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # 我的设置
-LOGIN_URL = '/users/login/'
+LOGIN_URL = 'users:login'
