@@ -1,14 +1,29 @@
 {% extends "learning_logs/base.html" %}
+{% load bootstrap3 %}
+<h3><a href="{% url 'learning_logs:new_topic' %}">新增主题</h3>
+
 {% block content %}
-<p>Topics</p>
-<ul>
-    {% for topic in topics %}
-        <li>
-            <a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a>
-        </li>
-        {% empty %}
-        <li>No topics have been added yet.</li>
-    {% endfor %}
-</ul>
-<a href="{% url 'learning_logs:new_topic' %}">Add a new topic</a>
+<main role="main" class="container">
+  <div class="my-3 p-3 bg-white rounded shadow-sm">
+    <h2 class="border-bottom border-gray pb-2 mb-0">主题列表</h2>
+      {% for topic in topics %}
+      <div class="media text-muted pt-3">
+        <p class="media-body pb-3 mb-0 lh-125 border-bottom border-gray">
+            <a class="d-block text-gray-dark" href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a>
+        </p>
+      </div>
+      {% empty %}
+      <div class="media text-muted pt-3">
+        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <strong class="d-block text-gray-dark">这里空空如也~</strong>
+        </p>
+      </div>    
+      {% endfor %}  
+    <small class="d-block text-right mt-3">
+      <a href="{% url 'learning_logs:new_topic' %}">新增主题</a>
+    </small>
+  </div>
+</main>
 {% endblock content %}
+
+

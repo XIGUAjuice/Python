@@ -1,10 +1,18 @@
 {% extends "learning_logs/base.html" %}
+{% load bootstrap3 %}
 {% block content %}
-<p><a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a></p>
-<p>Add a new entry:</p>
-<form action="{% url 'learning_logs:new_content' topic.id %}" method='post'>
-{% csrf_token %}
-{{ form.as_p }}
-<button name='submit'>add entry</button>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href={% url 'learning_logs:topics' %}>主题列表</a></li>
+    <li class="breadcrumb-item"><a href={% url 'learning_logs:topic' topic.id %}>{{ topic }}</a></li>
+  </ol>
+</nav>
+<h2>修增条目:</h2>
+<form action="{% url 'learning_logs:new_content' topic.id %}" method='post' class='form'>
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons %}
+    <button  class="btn btn-outline-secondary">提交</button>
+    {% endbuttons %}
 </form>
 {% endblock content %}

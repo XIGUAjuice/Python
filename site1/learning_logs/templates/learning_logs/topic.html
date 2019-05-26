@@ -1,27 +1,36 @@
 {% extends 'learning_logs/base.html' %}
+{% block header %}
+    <h2>{{ topic }}</h2>
+    <h5><a class="d-block text-right mt-3" href="{% url 'learning_logs:delete_topic' topic.id %}">删除主题</a></h5>
+{% endblock header %}
+
 {% block content %}
-<p>
-    Topic: {{ topic }} - 
-    <a href="{% url 'learning_logs:delete_topic' topic.id %}">delete topic</a>
-</p>
-<p>Entries:</p>
-<p>
-<a href="{% url 'learning_logs:new_content' topic.id %}">add new entry</a>
-</p>
-<ul>
-{% for entry in entries %}
-    <li>
-    <p>{{ entry.date_add|date:'M d, Y H:i' }}</p>
-    <p>{{ entry.text|linebreaks }}</p>
-    <p>
-        <a href="{% url 'learning_logs:edit_content' entry.id %}">edit entry</a> - 
-        <a href="{% url 'learning_logs:delete_content' entry.id %}">delete entry</a>
-    </p>
-    </li>
-    {% empty %}
-    <li>
-    There are no entries for this topic yet.
-    </li>
-{% endfor %}
-</ul>
+<main role="main" class="container">
+  <div class="my-3 p-3 bg-white rounded shadow-sm">
+    <h2 class="border-bottom border-gray pb-2 mb-0">条目列表</h2>
+      {% for entry in entries %}
+      <div class="media text-muted pt-3">
+        <p class="media-body pb-3 mb-0 lh-125 border-bottom border-gray">
+            <strong class="d-block text-gray-dark">{{ entry.date_add|date:'o-m-d, H:i' }}</strong>
+            <a class="d-block text-gray-dark" >{{ entry }}</a>
+            <small class="d-block text-right mt-3">
+                <a href="{% url 'learning_logs:edit_content' entry.id %}">修改条目</a>--
+                <a href="{% url 'learning_logs:delete_content' entry.id %}">删除条目</a>
+            </small>
+        </p>
+      </div>
+      {% empty %}
+      <div class="media text-muted pt-3">
+        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <strong class="d-block text-gray-dark">这里空空如也~</strong>
+        </p>
+      </div>    
+      {% endfor %}  
+    <small class="d-block text-right mt-3">
+      <a href="{% url 'learning_logs:new_content' topic.id %}">新增条目</a>
+    </small>
+  </div>
+</main>
 {% endblock content %}
+
+
