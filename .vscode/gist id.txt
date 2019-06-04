@@ -10,6 +10,6 @@
 
 
 
-
-token: 7eb532a84d2ddc2bd0f3659c5076a50422f9147c
-gist id: 20ca7abad1702c671b5b6b16f17b163e
+GitHub Token: a702e0dda59512c31a629e2d5f0e5b73d13e9efe
+GitHub Gist: df191983502e117230500ef142b2db9e
+GitHub Gist Type: Secret
