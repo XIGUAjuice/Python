@@ -1,14 +1,14 @@
 {
     // "vsintellicode.python.completionsEnabled": true,
     "python.pythonPath": "E:\\Python\\python.exe",
-    "python.formatting.provider": "yapf",
+    "python.formatting.provider": "autopep8",
     "python.jediEnabled": true,
     "python.linting.pylintEnabled": false,
     "python.linting.flake8Enabled": true,
     "python.linting.pep8Enabled": false,
     "python.linting.pep8Args": ["--ignore=W391, E302, W293, E501"],
     "python.linting.flake8Args": [
-        "--ignore=E501, E265, F401, E226, W391",
+        "--ignore=E501, E265, F401, E226, W391, W292, W293",
     ],
     "git.ignoreLimitWarning": true,
 }

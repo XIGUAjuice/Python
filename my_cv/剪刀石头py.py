@@ -11,7 +11,7 @@ def judge():
     img = cv2.imread("wif.jpg", 0)
     element = cv2.getStructuringElement(
         cv2.MORPH_RECT,
-        (11, 11))  #矩形：MORPH_RECT  交叉形：MORPH_CROSS  椭圆形：MORPH_ELLIPSE
+        (11, 11))  # 矩形：MORPH_RECT  交叉形：MORPH_CROSS  椭圆形：MORPH_ELLIPSE
     dilate = cv2.dilate(img, element)
     erode = cv2.erode(img, element)
     # 将两幅图像相减获得边，第一个参数是膨胀后的图像，第二个参数是腐蚀后的图像
@@ -80,7 +80,7 @@ result = cv2.medianBlur(image,5)
         if width[i] <= 20 or width[i] >= 40:
             width_jiandao = False
         width_length += width[i]
-    if width_jiandao == True and count == 2:
+    if width_jiandao and count == 2:
         return 1
     if (area < 8500):
         print('shi tou')
@@ -118,7 +118,7 @@ result = cv2.medianBlur(image,5)
         if width[i] <= 20 or width[i] >= 40:
             width_jiandao = False
         width_length += width[i]
-    if width_jiandao == True and count == 2:
+    if width_jiandao and count == 2:
         return 1
     if (area > 14000 or count >= 3):
         print('bu2')

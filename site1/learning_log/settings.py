@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'bootstrap3',
     'learning_logs',
     'users',
-]
+]  
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
